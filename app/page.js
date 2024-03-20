@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 
-export default function Home() {
+export default function App() {
   return (
     <div>
       <Head>
@@ -15,20 +15,22 @@ export default function Home() {
             <img src="/MOTION_LOGO.png" alt="Motion Logo" style={{ height: '12rem', paddingTop: '1rem' }} />
           </div>
           <div className="flex items-center space-x-4">
-            <Link href="/">
-              <span>About</span>
-            </Link>
-            <Link href="/about">
-              <span>Contact</span>
-            </Link>
-            <Link href="/contact">
-              <span>Login</span>
-            </Link>
+          <Link href="/about">
+            <span>About</span>
+          </Link>
+          <Link href="/contact">
+            <span>Contact</span>
+          </Link>
+          <Link href="/dashboard">
+            <span>Dashboard</span>
+          </Link>
+          <Link href="/login">
+            <span>Login</span>
+          </Link>
             <Link href="/get-motion">
               <button className="bg-black text-white py-2 px-4 rounded">Get Motion</button>
             </Link>
           </div>
-          {/* Add any additional elements here, such as login/logout buttons */}
         </div>
       </nav>
       <main className="container mx-auto mt-8">
@@ -39,25 +41,21 @@ export default function Home() {
           </Link>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Card 1 */}
           <div className="bg-white shadow-md rounded-lg p-6">
-          <img src="timer.png" alt="timer" className="w-full h-auto max-h-26 object-cover mb-2 rounded-lg" />
-            <p className="text-gray-600">Timer</p>
+            <img src="timer.png" alt="timer" className="w-full h-auto max-h-26 object-cover mb-2 rounded-lg" />
+            <p className="text-gray-600">Timer - Manage your time effectively with our timer feature.</p>
           </div>
-          {/* Card 2 */}
           <div className="bg-white shadow-md rounded-lg p-6">
-          <img src="todo-list.png" alt="timer" className="w-full h-auto max-h-26 object-cover mb-2 rounded-lg" />
-            <p className="text-gray-600">To Do List</p>
+            <img src="todo-list.png" alt="timer" className="w-full h-auto max-h-26 object-cover mb-2 rounded-lg" />
+            <p className="text-gray-600">To Do List - Keep track of your tasks and stay organized.</p>
           </div>
-          {/* Card 3 */}
           <div className="bg-white shadow-md rounded-lg p-6">
-          <img src="whiteboard.png" alt="timer" className="w-full h-auto max-h-26 object-cover mb-2 rounded-lg" />
-            <p className="text-gray-600">Whiteboard</p>
+            <img src="whiteboard.png" alt="timer" className="w-full h-auto max-h-26 object-cover mb-2 rounded-lg" />
+            <p className="text-gray-600">Whiteboard - Collaborate with others using our interactive whiteboard.</p>
           </div>
-          {/* Card 4 */}
           <div className="bg-white shadow-md rounded-lg p-6">
-          <img src="music.png" alt="timer" className="w-full h-auto max-h-26 object-cover mb-2 rounded-lg" />
-            <p className="text-gray-600">Music</p>
+            <img src="music.png" alt="timer" className="w-full h-auto max-h-26 object-cover mb-2 rounded-lg" />
+            <p className="text-gray-600">Music - Relax and focus with our built-in music player.</p>
           </div>
         </div>
       </main>
