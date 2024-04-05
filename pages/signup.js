@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import 'tailwindcss/tailwind.css';
 
 export default function SignUp() {
 	const [formData, setFormData] = useState({

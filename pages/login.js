@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Head from "next/head";
+import 'tailwindcss/tailwind.css';
 
 export default function Login() {
 	const [username, setUsername] = useState("");
