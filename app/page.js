@@ -12,7 +12,7 @@ export default function App() {
       <nav className="py-2 pb-4 text-black" style={{ marginTop: '-1rem' }}>
         <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
           <div>
-            <img src="/MOTION_LOGO.png" alt="Motion Logo" style={{ height: '12rem', paddingTop: '1rem' }} />
+            <img src="/MOTION_LOGO.png" alt="Motion Logo" className="h-88 w-288 m-10" />
           </div>
           <div className="flex items-center space-x-4">
           <Link href="/about">

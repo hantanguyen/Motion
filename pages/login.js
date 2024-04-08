@@ -15,7 +15,7 @@ export default function Login() {
 					    <img
 						    src="/MOTION_LOGO.png"
 						    alt="Motion Logo"
-						    style={{ height: "12rem", paddingTop: "1rem" }}
+						    className="h-88 w-288 m-10"
 					    />
 				    </div>
 				    <div className="flex items-center space-x-4">
@@ -41,7 +41,8 @@ export default function Login() {
 		    </nav>
 			<div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md border border-gray-300">
 				<h2 className="text-2xl font-bold mb-4">Log In</h2>
-				<div className="border-2 border-blue-500 p-4">
+				<p className="text-sm/[12px] font-normal text-gray-500 lg:text-xl dark:text-gray-400">Stay up to date on studying</p>
+				<div>
 					<form
 						onSubmit={(event) => {
 							event.preventDefault();
@@ -53,52 +54,49 @@ export default function Login() {
 							setPassword("");
 						}}>
 						<div className="mb-4">
-							<label
-								htmlFor="username"
-								className="block text-sm font-medium text-gray-700">
-								Username:
-							</label>
 							<input
 								type="text"
+								placeholder="Username"
 								id="username"
 								value={username}
 								onChange={(event) =>
 									setUsername(event.target.value)
 								}
 								required
-								className="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-400 focus:ring-opacity-50"
+								className="mt-1 p-2 block w-full rounded-md bg-gray-100 shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-400 focus:ring-opacity-50"
 							/>
 						</div>
 						<div className="mb-4">
-							<label
-								htmlFor="password"
-								className="block text-sm font-medium text-gray-700">
-								Password:
-							</label>
 							<input
 								type="password"
+								placeholder="Password"
 								id="password"
 								value={password}
 								onChange={(event) =>
 									setPassword(event.target.value)
 								}
 								required
-								className="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-400 focus:ring-opacity-50"
+								className="mt-1 p-2 block w-full rounded-md bg-gray-100 shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-400 focus:ring-opacity-50"
 							/>
+						</div>
+						<div>
+							<Link href="/forgotpassword" className="font-bold">
+								Forgot password?
+							</Link>
 						</div>
 						<button
 							type="submit"
-							className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">
-							Login
+							className="w-full bg-neutral-800 text-white py-2 px-4 mt-4 rounded-md hover:bg-neutral-950 focus:outline-none focus:bg-neutral-950">
+							Sign In
 						</button>
-						<div className="mt-4 text-center">
-							New to Motion?{" "}
-							<Link href="/signup" className="font-bold">
-								Join Now
-							</Link>
-						</div>
 					</form>
 				</div>
+			</div>
+			<div className="mt-4 text-center">
+				New to Motion?{" "}
+					<Link href="/signup" className="font-bold">
+						Join Now
+					</Link>
 			</div>
 		</div>
 	);
