@@ -142,15 +142,16 @@ function Dashboard() {
       </div>
 
       <div className="w-3/4 bg-white p-6">
-        <h1 className="text-xl font-bold mb-4 pl-2">
+        <div className="flex items-center mb-4">
           <input
             type="text"
             placeholder="Search..."
-            className="border border-gray-300 rounded-md px-3 py-2 w-3/4"
+            className="border border-gray-300 rounded-md px-3 py-2 w-3/4 mr-2"
           />
-
           <img src="/user_pfp.png" alt="User" className="w-6 h-6" />
-        </h1>
+          <h1>User</h1>
+          <img src="/user_settings.png" alt="User settings" className="w-6 h-6" />
+        </div>
 
         <hr className="my-4" />
         
