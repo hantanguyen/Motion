@@ -1,5 +1,7 @@
+
 import React, { useState } from "react";
 import Link from "next/link";
+import axios from 'axios';
 import Head from "next/head";
 import 'tailwindcss/tailwind.css';
 
@@ -44,14 +46,27 @@ export default function Login() {
 				<p className="text-sm/[12px] font-normal text-gray-500 lg:text-xl dark:text-gray-400">Stay up to date on studying</p>
 				<div>
 					<form
-						onSubmit={(event) => {
+						onSubmit={async (event) => {
 							event.preventDefault();
-							// Here you can implement your login logic, such as sending a request to a server
-							console.log("Username:", username);
-							console.log("Password:", password);
-							// Reset the form after submission
-							setUsername("");
-							setPassword("");
+
+							try {
+								const response = await axios.post('http://localhost:3000/api/login', { username, password });
+
+								if (response.status === 400) return alert(`No user exists with that information, please check your username and password.`)
+								else if (response.status !== 200) return alert(`Error signing up: ${response.tex}`)
+
+								setUsername("");
+								setPassword("");
+
+								return alert(`Logged in!`)
+							} catch (error) {
+								if (error instanceof axios.AxiosError) {
+									return alert(`Error signing up: ${error.response.data}`)
+								}
+
+								console.error('Error signing up: ', error);
+								alert('Error signing up. Please try again later.');
+							}
 						}}>
 						<div className="mb-4">
 							<input

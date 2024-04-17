@@ -2,7 +2,7 @@ const { MongoClient } = require("mongodb")
 const { createHash, randomBytes} = require('crypto');
 
 export default async function handler(req, res) {
-    const client = new MongoClient("mongodb+srv://celine:7Oj7HYZZZK6qrA6B@production.mgcr6cu.mongodb.net");
+    const client = new MongoClient(process.env.MONGO_URL);
 
     await client.connect();
 

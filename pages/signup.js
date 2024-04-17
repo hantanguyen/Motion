@@ -54,7 +54,6 @@ export default function SignUp() {
 					<form
 						onSubmit={async (event) => {
 							event.preventDefault();
-							console.log(formData);
 
 							if (formData.password !== formData.confirmPassword)
 								return alert(`Please make sure your password matches your confirm password field.`)
