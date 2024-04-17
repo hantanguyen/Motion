@@ -2,7 +2,7 @@ const { MongoClient } = require("mongodb")
 const { createHash } = require('crypto');
 
 export default async function handler(req, res) {
-    const client = new MongoClient("mongodb+srv://celine:7Oj7HYZZZK6qrA6B@production.mgcr6cu.mongodb.net");
+    const client = new MongoClient(process.env.MONGO_URL);
 
     await client.connect();
 
@@ -13,7 +13,10 @@ export default async function handler(req, res) {
 
 	await client.close()
 
-    if (user) return res.status(200).send({ username: user.username, apiKey: user.apiKey })
+    if (user) {
+        await res.setHeader(`Set-Cookie`, [`apiKey=${user.apiKey};Max-age=604800`])
+        return res.status(200).send({ username: user.username, apiKey: user.apiKey })
+    }
 
     return res.status(400).send('No user found with that information');
   }
