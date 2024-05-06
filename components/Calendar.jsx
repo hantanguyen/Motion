@@ -1,9 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 
 const CalendarComponent = () => {
-    const [events, setEvents] = useState([]);
+    const [events, setEvents] = useState(() => {
+        if (typeof window !== 'undefined') {
+            const storedEvents = localStorage.getItem('calendarEvents');
+            return storedEvents ? JSON.parse(storedEvents) : [];
+        } else {
+            return [];
+        }
+    });
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            localStorage.setItem('calendarEvents', JSON.stringify(events));
+        }
+    }, [events]);
+
     const [showModal, setShowModal] = useState(false);
     const [eventTitle, setEventTitle] = useState('');
     const [eventStart, setEventStart] = useState('');
@@ -30,10 +44,10 @@ const CalendarComponent = () => {
 
     const handleAddEventSubmit = () => {
         const newEvent = {
-            id: events.length + 1, // Unique identifier
+            id: Date.now().toString(),
             title: eventTitle,
-            start: new Date(eventStart), // Convert to Date object
-            end: new Date(eventEnd) // Convert to Date object
+            start: new Date(eventStart),
+            end: new Date(eventEnd)
         };
         setEvents([...events, newEvent]);
         setShowModal(false);
@@ -72,14 +86,13 @@ const CalendarComponent = () => {
             <FullCalendar
                 plugins={[dayGridPlugin]}
                 initialView="dayGridMonth"
-                events={events}
                 headerToolbar={{
-                  start: "today prev,next", // will normally be on the left. if RTL, will be on the right
-                  center: "title",
-                  end: "dayGridMonth,timeGridWeek,timeGridDay", // will normally be on the right. if RTL, will be on the left
-                }}
-                height={"85vh"}
-        
+                    start: "today prev,next", // will normally be on the left. if RTL, will be on the right
+                    center: "title",
+                    end: "dayGridMonth,timeGridWeek,timeGridDay", // will normally be on the right. if RTL, will be on the left
+                  }}
+                  height={"85vh"}          
+                events={events}
                 eventContent={(eventInfo) => (
                     <div>
                         <p>{eventInfo.event.title}</p>
