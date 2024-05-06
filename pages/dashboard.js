@@ -116,7 +116,7 @@ function Dashboard() {
 
         <hr className="my-4 mt-96" />
 
-        <a href="/seetings">
+        <a href="/settings">
           <button className="flex text-black mb-6">
             <img
               src="/settings.png"

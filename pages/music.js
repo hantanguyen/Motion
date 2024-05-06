@@ -1,63 +1,129 @@
-import { Inter } from 'next/font/google';
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import Link from "next/link";
+import Head from "next/head";
+import 'tailwindcss/tailwind.css';
 
+const SpotifyEmbedder = () => {
+    const [playlistUrl, setPlaylistUrl] = useState('');
+    const [embedCode, setEmbedCode] = useState(null);
 
-const YOUTUBE_PLAYLIST_ITEMS_API = "https://www.googleapis.com/youtube/v3/playlistItems";
+    const handleEmbed = () => {
+        const match = playlistUrl.match(/https:\/\/open\.spotify\.com\/playlist\/([a-zA-Z0-9]+)/);
 
+        if (match) {
+            const playlistId = match[1];
+            const iframeCode = `
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/${playlistId}?utm_source=generator"
+            width="100%" height="152" frameBorder="0" allowfullscreen=""
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+          `;
+          setEmbedCode(iframeCode);
+        } else {
+            alert("Invalid Spotify playlist URL");
+        }
+    };
 
-export async function getServerSideProps(playlistLink) {
-   const res = await fetch("$ {YOUTUBE_PLAYLIST_ITEMS_API}?part=snippet&playlistId={playlistLink}&maxResults=50&key=${process.env.YOUTUBE_API_KEY");
-   const data = await res.json();
-   return {
-       props: {
-           data
-       }
-   }
+return (
+    <div className="flex h-screen">
+      <div className="flex-none w-1/4 bg-white-800 text-black-100 p-6 relative">
+        <img
+          src="/MOTION_LOGO.png"
+          alt="Motion Logo"
+          className="h-82 w-288 m1-10 pr-8 pb-4"
+        />
+        <h1 className="text-xl pb-2 font-bold mb-4 pl-2">Menu</h1>
+        <a href="/dashboard">
+          <button className="flex items-center bg-black text-white px-12 py-2 rounded-md hover:bg-gray-600">
+            <img
+              src="/dash_home.png"
+              alt="Dashboard Icon"
+              className="w-6 h-6 mr-2"
+            />
+            Dashboard
+          </button>
+        </a>
+        <a href="/flashcards">
+          <button className="flex text-black mt-5">
+            <img
+              src="/flashcards.png"
+              alt="Flash Cards Icon"
+              className="w-6 h-6 mr-2"
+            />
+            Flash Cards
+          </button>
+        </a>
+        <a href="/calendar">
+          <button className="flex text-black mt-5">
+            <img
+              src="/calendar.png"
+              alt="Calendar Icon"
+              className="w-6 h-6 mr-2"
+            />
+            Calendar
+          </button>
+        </a>
+        <a href="/notes">
+          <button className="flex text-black mt-5">
+            <img src="/notes.png" alt="Note Icon" className="w-6 h-6 mr-2" />
+            Notes
+          </button>
+        </a>
+        <a href="/music">
+          <button className="flex text-black mt-5">
+            <img
+              src="/music.png"
+              alt="Music List Icon"
+              className="w-6 h-6 mr-2"
+            />
+            Music
+          </button>
+        </a>
+
+        <hr className="my-4 mt-96" />
+
+        <a href="/settings">
+          <button className="flex text-black mb-6">
+            <img
+              src="/settings.png"
+              alt="Settings Icon"
+              className="w-6 h-6 mr-2"
+            />
+            Settings
+          </button>
+        </a>
+
+        <a href="/logout">
+          <button className="flex text-black mb-12">
+            <img
+              src="/Logout .png"
+              alt="Logout Icon"
+              className="w-6 h-6 mr-2"
+            />
+            Logout
+          </button>
+        </a>
+
+        <div className="absolute inset-y-0 right-0 w-px bg-gray-300"></div>
+      </div>
+      <div className="spotify-embedder">
+        <h2>Embed a Spotify Playlist</h2>
+        <input
+        type="text"
+        value={playlistUrl}
+        onChange={(e) => setPlaylistUrl(e.target.value)}
+        placeholder="Enter Spotify playlist URL"
+        className="border rounded p-2 w-full"
+        />
+        <button onClick={handleEmbed} className="bg-blue-500 text-white p-2 mt-2 rounded">
+            Embed
+        </button>
+
+        {embedCode && (
+            <div className="spotify-embed mt-4" dangerouslySetInnerHTML={{ __html: embedCode }} />
+        )}
+      </div>
+    </div>
+    );
 }
 
-
-export default function Home() {
-   const [link, setLink] = useState("paste your link");
-   const enter = () => {
-       alert(link)
-   }
-   const change = event => {
-       setLink(event.target.value)
-   }
-
-
-   return (
-       <div>
-           <Head>
-               <title>My Playlist</title>
-           </Head>
-
-
-           <main>
-               <section className=" bg-black">
-                   <h1>Add a link to a Youtube Playlist</h1>
-                   <input onChange={change}
-                   link = {link}></input>
-                   <button onClick = {enter}>Enter </button>
-               </section>
-           <ul>
-               {data.items.map((item) => {
-                   const { id, snippet = {} } = item;
-                   const { title, thumbnails = {}, resourceId } = snippet;
-                   const { medium = {}} = thumbnails
-                   return (
-                       <li key={id}>
-                           <a href="https://www.youtube.com/watch?v=${resourceId.videoId}">
-                               <p>
-                                   <img width={medium.width} height={medium.height} src={medium.url} alt="" ></img>
-                               </p>
-                               <h3>{ title }</h3>
-                           </a>
-                       </li>
-                   )
-               })}
-           </ul>
-           </main>
-       </div>
-   )
-}
+export default SpotifyEmbedder;
