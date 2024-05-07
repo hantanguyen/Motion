@@ -19,6 +19,16 @@ function Dashboard() {
     }
   };
 
+  const toggleTask = (index) => {
+    const updatedTasks = [...tasks];
+    if (updatedTasks[index].type === 's') {
+      updatedTasks[index] = updatedTasks[index].props.children;
+    } else {
+      updatedTasks[index] = <s>{updatedTasks[index]}</s>;
+    }
+    setTasks(updatedTasks);
+  };
+
   const startTimer = () => {
     setTimerActive(true);
     setTimerPaused(false);
@@ -201,14 +211,18 @@ function Dashboard() {
             )}
           </div>
 
-          <div
+        <div
             className="bg-gray-200 rounded-lg p-4 ml-auto"
             style={{ marginRight: "-360px", width: "400px" }}
           >
             <h2 className="text-xl font-semibold mb-2">Todo List</h2>
             <ul>
               {tasks.map((task, index) => (
-                <li key={index} className="text-gray-800">
+                <li
+                  key={index}
+                  className="text-gray-800 cursor-pointer hover:bg-gray-300 py-1 px-2 rounded"
+                  onClick={() => toggleTask(index)}
+                >
                   {task}
                 </li>
               ))}

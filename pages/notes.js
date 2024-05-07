@@ -6,7 +6,6 @@ import React, { useState, useEffect } from 'react';
 const Notes = () => {
     const [notes, setNotes] = useState([]);
 
-    // Load notes from localStorage on component mount
     useEffect(() => {
         const storedNotes = localStorage.getItem("notes");
         if (storedNotes) {
@@ -14,30 +13,26 @@ const Notes = () => {
         }
     }, []);
 
-    // Update localStorage whenever notes state changes
     useEffect(() => {
         localStorage.setItem("notes", JSON.stringify(notes));
     }, [notes]);
 
-    // Function to add a new note
     const addNote = () => {
-        setNotes(prevNotes => [...prevNotes, ""]); // Add an empty note
+        setNotes(prevNotes => [...prevNotes, ""]); 
     };
 
-    // Function to remove a note
     const removeNote = (index) => {
         setNotes(prevNotes => {
             const updatedNotes = [...prevNotes];
-            updatedNotes.splice(index, 1); // Remove note at index
+            updatedNotes.splice(index, 1); 
             return updatedNotes;
         });
     };
 
-    // Function to handle note text change
     const handleNoteChange = (index, text) => {
         setNotes(prevNotes => {
             const updatedNotes = [...prevNotes];
-            updatedNotes[index] = text; // Update note at index
+            updatedNotes[index] = text; 
             return updatedNotes;
         });
     };
@@ -51,7 +46,7 @@ const Notes = () => {
                 <img src="edit.png" alt="Edit Icon" className="mr-2" />Create a Note
             </button>
             <div className="notes-container">
-                <p className="mb-4">Total Notes: {notes.length}</p> {/* Notes counter */}
+                <p className="mb-4">Total Notes: {notes.length}</p> 
                 {notes.map((note, index) => (
                     <div key={index} className="input-box bg-white shadow-md rounded-md p-4 mb-4 relative">
                         <textarea
