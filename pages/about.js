@@ -3,9 +3,9 @@ import Link from "next/link";
 import Head from "next/head";
 import 'tailwindcss/tailwind.css';
 
-export default function About() {
 
-    return(
+export default function About() {
+    return (
         <div>
             <nav className="py-2 pb-4 text-black" style={{ marginTop: '-1rem' }}>
                 <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
@@ -34,8 +34,18 @@ export default function About() {
             <div className="m-4 text-5xl font-bold text-center">
                 About
             </div>
-            <p className="text-2xl container mx-auto mt-8 text-center">Motion is a website used for studying and productivity created by Ian Akubu, Hori Nguyen, and Celine Truong.
-            This website was made for a semester-long project for CPSC 362 (Foundations of Software Engineering) at California State University, Fullerton. </p>
+            <p className="text-2xl container mx-auto mt-8 text-center">
+                Motion is a website used for studying and productivity created by Ian Akubu, Hori Nguyen, and Celine Truong. This website was made for a semester-long project for CPSC 362 (Foundations of Software Engineering) at California State University, Fullerton.
+            </p>
+            <div className="container mx-auto mt-8 text-center">
+                <h2 className="text-3xl font-bold mb-4">Our Mission</h2>
+                <p className="text-lg">
+                    Our mission is to provide students with a powerful platform that enhances their studying experience, fosters productivity, and promotes academic success. We believe that with the right tools and support, every student can achieve their full potential.
+                </p>
+                <p className="text-lg">
+                   Created with React, JavaScript, and Tailwind CSS.
+                </p>
+            </div>
         </div>
     );
 }
