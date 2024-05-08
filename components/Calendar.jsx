@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
+import 'tailwindcss/tailwind.css';
 
 const CalendarComponent = () => {
     const [events, setEvents] = useState(() => {

@@ -105,22 +105,30 @@ return (
 
         <div className="absolute inset-y-0 right-0 w-px bg-gray-300"></div>
       </div>
-      <div className="spotify-embedder">
-        <h2>Embed a Spotify Playlist</h2>
-        <input
-        type="text"
-        value={playlistUrl}
-        onChange={(e) => setPlaylistUrl(e.target.value)}
-        placeholder="Enter Spotify playlist URL"
-        className="border rounded p-2 w-full"
-        />
-        <button onClick={handleEmbed} className="bg-blue-500 text-white p-2 mt-2 rounded">
+      <div className="flex-grow flex justify-center items-center bg-200 p-6">
+        <div className="spotify-embedder w-full max-w-lg text-center">
+          <h2 className="text-2xl font-bold mb-6">Embed a Spotify Playlist</h2>
+          <input
+          type="text"
+          value={playlistUrl}
+          onChange={(e) => setPlaylistUrl(e.target.value)}
+          placeholder="Enter Spotify Playlist URL"
+          className="border rounded p-3 w-full mb-4"
+          />
+          <button
+          onClick={handleEmbed}
+          className="bg-black text-white px-12 py-3 rounded-md hover:bg-gray-600 transition"
+          >
             Embed
-        </button>
+          </button>
 
-        {embedCode && (
-            <div className="spotify-embed mt-4" dangerouslySetInnerHTML={{ __html: embedCode }} />
-        )}
+          {embedCode && (
+            <div
+            className="spotify-embed mt-10"
+            dangerouslySetInnerHTML={{ __html: embedCode }}
+            />
+          )}
+        </div>
       </div>
     </div>
     );
